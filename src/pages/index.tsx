@@ -1,7 +1,11 @@
-export default function Home() {
+import Link from "next/link";
+
+export default function HomePage() {
   return (
-    <div className="min-h-screen min-w-full bg-slate-500">
-     <h2 className="text-4xl text-red-400">Title</h2>
+    <div>
+     <h2>Home</h2>
+
+     <Link href='/users'>Users Page</Link>
     </div>
   );
 }
