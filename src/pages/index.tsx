@@ -1,10 +1,3 @@
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
 export default function Home() {
   return (
     <div className="min-h-screen min-w-full bg-slate-500">
