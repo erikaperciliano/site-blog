@@ -8,19 +8,19 @@ export const FeatureSection = () => {
         <section className="container bg-gray-700 grid gap-6 md:grid-cols-2 pb-8 pt-8 md:py-10">
             <div className="flex flex-col gap-2 rounded-lg p-6 bg-gray-500 md:p-12">
                 <span className="text-body-tag text-blue-200 bg-blue-400 px-2 py-1 w-fit rounded-sm uppercase">Simple</span>
-                <h2 className="text-gray-100 text-heading-lg">Create an online product catalog in minutes</h2>
+                <h2 className="text-gray-100 text-heading-lg font-sans">Create an online product catalog in minutes</h2>
             </div>
 
             <div className="flex flex-col gap-4 rounded-lg p-6 bg-gray-500 md:p-12">
                 <span className="text-body-tag text-blue-200 bg-blue-400 px-2 py-1 w-fit rounded-sm uppercase">Practical</span>
-                <h2 className="text-gray-100 text-heading-lg">Sell ​​to your audience through a single platform</h2>
+                <h2 className="text-gray-100 text-heading-lg font-sans">Sell ​​to your audience through a single platform</h2>
             </div>
 
             <div className="col-span-full flex flex-col gap-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-4 rounded-lg bg-gray-500 py-6 md:p-12">
                     <div className="flex flex-col gap-4">
                         <span className="text-body-tag text-blue-200 bg-blue-400 px-2 py-1 w-fit rounded-sm uppercase">Customizable</span>
-                        <h2 className="text-gray-100 text-heading-lg">Have a personalized online store with your brand&apos;s look</h2>
+                        <h2 className="text-gray-100 text-heading-lg font-sans">Have a personalized online store with your brand&apos;s look</h2>
                     
                         <Button asChild  className="w-fit rounded-full hidden mt-4 md:mt-auto md:flex">
                             <Link href='/create-store'>
