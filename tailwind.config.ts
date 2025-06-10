@@ -6,6 +6,7 @@ export default {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/templates/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     container: {
@@ -65,7 +66,6 @@ export default {
 
         // Body Tag
         'body-tag': ['12px', { lineHeight: '100%', fontWeight: '400' }],
-
 
         // Action - Inter
         'action-md': ['16px', { lineHeight: 'normal', fontWeight: '500' }],

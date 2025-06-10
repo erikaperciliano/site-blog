@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Logo } from '../logo';
+import { Logo } from '../../logo';
 
 export const Footer = () => {
   return (
@@ -8,15 +8,15 @@ export const Footer = () => {
         <div className="flex justify-between md:flex-row gap-8 py-8">
           <Logo />
 
-          <nav className="flex  md:flex-row items-center gap-4 text-sm text-blue-100">
-            <Link href="/terms-of-use" className="hover:text-blue-200">
-              Terms of Use
+          <nav className="flex flex-col md:flex-row items-center gap-4 text-sm text-blue-100">
+            <Link href="/termos-de-uso" className="hover:text-blue-200">
+              Termos de uso
             </Link>
             <Link
-              href="/privacy-policy"
+              href="/politica-de-privacidade"
               className="hover:text-blue-200"
             >
-              Privacy Policy
+              Política de privacidade
             </Link>
             <Link href="/feedback" className="hover:text-blue-200">
               Feedback
