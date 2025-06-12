@@ -10,6 +10,9 @@
 !.yarn/releases
 !.yarn/versions
 
+# contentlayerAdd commentMore actions
+.contentlayer
+
 # testing
 /coverage
 
