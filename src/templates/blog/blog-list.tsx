@@ -2,6 +2,7 @@ import { Search } from '@/components/search';
 import { useRouter } from 'next/router';
 import { PostCard } from './components/post-card';
 import { PostGridCard } from './components/post-grid-card';
+import { allPosts } from 'contentlayer/generated';
 
 export function BlogList() {
   const router = useRouter();
@@ -9,6 +10,8 @@ export function BlogList() {
   const pageTitle = query
     ? `Search results for "${query}"`
     : 'Tips and strategies to boost your business';
+
+  const posts = allPosts;
 
   return (
     <div className="flex flex-col py-24 flex-grow h-full">
@@ -28,39 +31,21 @@ export function BlogList() {
       </header>
 
       <PostGridCard>
-        <PostCard
-          title="Turning your business into an online store"
-          description="If you are looking for a simple and effective way to sell your products online..."
-          date="20/12/2024"
-          slug="/transforming"
-          image="/assets/first-post.png"
-          author={{
-            avatar: '/customer-01.png',
-            name: 'Aspen Dokidis',
-          }}
-        />
-        <PostCard
-          title="Turning your business into an online store"
-          description="If you are looking for a simple and effective way to sell your products online..."
-          date="20/12/2024"
-          slug="/transforming"
-          image="/assets/first-post.png"
-          author={{
-            avatar: '/customer-01.png',
-            name: 'Aspen Dokidis',
-          }}
-        />
-        <PostCard
-          title="Turning your business into an online store"
-          description="If you are looking for a simple and effective way to sell your products online..."
-          date="20/12/2024"
-          slug="/transforming"
-          image="/assets/first-post.png"
-          author={{
-            avatar: '/customer-01.png',
-            name: 'Aspen Dokidis',
-          }}
-        />
+
+        {posts.map((post) => (
+          <PostCard
+            key={post._id}
+            title={post.title}
+            description={post.description}
+            date={new Date(post.date).toLocaleDateString('pt-BR')}
+            slug={post.slug}
+            image={post.image}
+            author={{
+              avatar: post.author?.avatar,
+              name: post.author?.name,
+            }}
+          />
+        ))}
       </PostGridCard>
     </div>
   );
