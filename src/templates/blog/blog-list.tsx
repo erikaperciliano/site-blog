@@ -2,7 +2,7 @@ import { Search } from '@/components/search';
 import { useRouter } from 'next/router';
 import { PostCard } from './components/post-card';
 import { PostGridCard } from './components/post-grid-card';
-import { allPosts, type Post } from 'contentlayer/generated';
+import { allPosts} from 'contentlayer/generated';
 import { Inbox } from 'lucide-react';
 
 export function BlogList() {
