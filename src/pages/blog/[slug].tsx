@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { allPosts} from 'contentlayer/generated';
 import Image from "next/image";
+import { Avatar } from "@/components/avatar";
 
 export default function PostPage() {
     const router = useRouter();
@@ -22,6 +23,7 @@ export default function PostPage() {
         return <div className="text-red-500">Post not found</div>;
     }
 
+    const publishedDate = new Date(post?.date).toLocaleDateString('pt-BR')
 
     return (
         <main className="mt-32 text-gray-100">
@@ -51,6 +53,21 @@ export default function PostPage() {
                             fill
                         />
                     </figure>
+
+                    <header className="p-4 md:p-6 lg:p-12 pb-0">
+                        <h1 className="mb-6 text-balance text-heading-lg md:text-heading-xl">{post?.title}</h1>
+
+                        <Avatar.Container>
+                            <Avatar.Image src={post?.author.avatar.trim()} alt={post?.title}/>
+                            <Avatar.Content>
+                                <Avatar.Title>{post?.author.name}</Avatar.Title>
+                                <Avatar.Description>
+                                    Published in {" "}
+                                    <time dateTime={post?.date}>{publishedDate}</time>
+                                </Avatar.Description>
+                            </Avatar.Content>
+                        </Avatar.Container>
+                    </header>
                 </article>
             </div>
         </main>
