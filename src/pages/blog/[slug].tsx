@@ -5,6 +5,7 @@ import { allPosts} from 'contentlayer/generated';
 import Image from "next/image";
 import { Avatar } from "@/components/avatar";
 import { Markdown } from "@/components/markdown";
+import { Button } from "@/components/ui/button";
 
 export default function PostPage() {
     const router = useRouter();
@@ -75,6 +76,23 @@ export default function PostPage() {
                             <Markdown content={post.body.raw} />
                         </div>
                     </article>
+
+                    <aside className="space-y-6">
+                        <div className="rounded-lg bg-gray-700 p-4 md:p-6">
+                            <h2 className="mb-4 text-heading-xs text-gray-100">To Share</h2>
+
+                            <div className="space-y-3">
+                                {[{key: '1', providerName: 'LinkedIn'}].map((provider) => (
+                                    <Button
+                                        key={provider.key}
+                                        variant='outline'
+                                    >
+                                        {provider.providerName}
+                                    </Button>
+                                ))}
+                            </div>
+                        </div>
+                    </aside>
                 </div>
             </div>
         </main>
