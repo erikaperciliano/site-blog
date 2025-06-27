@@ -1,15 +1,15 @@
 import { useCallback, useMemo } from 'react';
-import {
-  ShareConfig,
-  SOCIAL_PROVIDERS,
-  SocialProvider,
-} from './social-providers';
+import { ShareConfig, SOCIAL_PROVIDERS, SocialProvider } from './social-providers';
+import { useClipboard } from '../use-clipboard/use-clipboard';
+import { Link2 } from 'lucide-react';
 
 type UseShareProps = ShareConfig & {
   clipboardTimeout?: number;
 };
 
-export const useShare = ({ url, title, text }: UseShareProps) => {
+export const useShare = ({ url, title, text, clipboardTimeout = 2000 }: UseShareProps) => {
+  const { isCopied, handleCopy } = useClipboard({ timeout: clipboardTimeout })
+
   const shareConfig = useMemo(
     () => ({
       url,
@@ -19,12 +19,15 @@ export const useShare = ({ url, title, text }: UseShareProps) => {
     [url, title, text]
   );
 
-  const share = useCallback(
-    (provider: SocialProvider) => {
+  const share = useCallback(async (provider: SocialProvider) => {
       try {
+        if(provider === 'clipboard') {
+          return await handleCopy(url)
+        }
+
         const providerConfig = SOCIAL_PROVIDERS[provider];
         if (!providerConfig) {
-          throw new Error(`Provider não suportado: ${provider}`);
+          throw new Error(`Provider not supported: ${provider}`);
         }
 
         const shareUrl = providerConfig.shareUrl(shareConfig);
@@ -40,7 +43,7 @@ export const useShare = ({ url, title, text }: UseShareProps) => {
         return false;
       }
     },
-    [shareConfig]
+    [shareConfig, handleCopy, url]
   );
 
   const shareButtons = useMemo(
@@ -51,8 +54,14 @@ export const useShare = ({ url, title, text }: UseShareProps) => {
         icon: provider.icon,
         action: () => share(key as SocialProvider),
       })),
+      {
+        provider: 'clipboard',
+        name: isCopied ? 'Link copied!' : 'Copy link',
+        icon: <Link2 className='h-4 w-4'/>,
+        action: () => share('clipboard')
+      }
     ],
-    [share]
+    [share, isCopied]
   );
 
   return { shareButtons };
