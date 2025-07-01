@@ -1,7 +1,6 @@
-import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
-import { allPosts } from 'contentlayer/generated';
+import { Post } from 'contentlayer/generated';
 
 import {
   Breadcrumb,
@@ -15,17 +14,13 @@ import { Markdown } from '@/components/markdown';
 import { Button } from '@/components/ui/button';
 import { useShare } from '@/hooks/use-share';
 
-export const PostPage = () => {
-     const router = useRouter();
-  const slug = router.query.slug as string;
+export type PostPageProps = {
+    post: Post
+}
 
-    // Prepare post and postUrl for useShare, but don't access post fields yet
-    const post = slug
-        ? allPosts.find(
-            (post) => post.slug?.toLowerCase() === slug.toLowerCase()
-        )
-        : undefined;
-    const postUrl = `https://site.set/blog/${slug}`;
+export const PostPage = ({ post }: PostPageProps) => {
+    const publishedDate = new Date(post?.date).toLocaleDateString('pt-BR');
+    const postUrl = `https://site.set/blog/${post.slug}`;
 
     // Always call hooks unconditionally
     const { shareButtons } = useShare({
@@ -34,16 +29,9 @@ export const PostPage = () => {
         text: post?.description ?? '',
     });
 
-    // Wait for slug to be available
-    if (!slug || typeof slug !== "string") {
-        return <div className="text-white">Loading...</div>;
-    }
-
     if (!post) {
         return <div className="text-red-500">Post not found</div>;
     }
-
-    const publishedDate = new Date(post?.date).toLocaleDateString('pt-BR');
 
     return (
         <main className="py-20 text-gray-100">

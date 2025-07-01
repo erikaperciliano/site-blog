@@ -17,7 +17,7 @@ export function BlogList({ posts }:BlogListProps ) {
     : 'Tips and strategies to boost your business';
 
   const postList = query ? posts.filter((post) => post.title.toLowerCase()?.includes(query.toLowerCase())) : posts;
-  const hasPosts = posts.length > 0;
+  const hasPosts = postList.length > 0;
 
   return (
     <div className="flex flex-col py-24 flex-grow h-full">

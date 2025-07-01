@@ -1,1 +1,1 @@
-export * from './use-clickboard'
+export * from './use-clipboard'
